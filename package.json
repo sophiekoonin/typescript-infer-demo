@@ -1,0 +1,14 @@
+{
+  "name": "ts-errors",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "codegen": "openapi-typescript spec.yml  -o src/api.ts"
+  },
+  "devDependencies": {
+    "openapi-typescript": "7.7.1",
+    "typescript": "5.8.3"
+  }
+}

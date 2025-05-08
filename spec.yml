@@ -1,0 +1,336 @@
+openapi: 3.1.1
+info:
+  title: Bird Site
+  description: |-
+    An example API for a birdwatching site where birders can track their sightings.
+  version: 1.0.0
+servers:
+  - url: https://example.com/api/v1
+paths:
+  /birds:
+    get:
+      summary: List birds
+      description: Get a list of all birds, optionally filtered by type
+      operationId: listBirds
+      parameters:
+        - in: query
+          name: type
+          description: Filter birds by type
+          example: waders
+          schema:
+            type: string
+        - in: query
+          name: habitat
+          description: List birds from a specific habitat
+          example: waders
+          schema:
+            type: string
+        - in: query
+          name: colour
+          description: Filter birds by colour
+          schema:
+            $ref: "#/components/schemas/Colour"
+
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Bird"
+  /birds/{birdId}:
+    get:
+      summary: Get a bird
+      description: Read an individual bird by ID
+      operationId: birdById
+      parameters:
+        - $ref: "#/components/parameters/birdId"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Bird"
+  /birds/{birdId}/sightings:
+    get:
+      summary: Sightings by bird ID
+      description: List all sightings for a bird
+      operationId: sightingsByBirdId
+      parameters:
+        - $ref: "#/components/parameters/birdId"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sighting"
+  /users:
+    post:
+      summary: Create user
+      description: Create a new user profile
+      operationId: addUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: User's name
+                  type: string
+                email:
+                  description: User's email address
+                  type: string
+                favouriteBird:
+                  description: User's favourite birds (bird IDs)
+                  type: array
+                  items:
+                    type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /users/{userId}:
+    get:
+      summary: Read user profile
+      description: Fetch a user's profile
+      operationId: userById
+      parameters:
+        - $ref: "#/components/parameters/userId"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sighting"
+  /users/{userId}/sightings:
+    parameters:
+      - $ref: "#/components/parameters/userId"
+    get:
+      summary: List sightings by user ID
+      description: List all bird sightings for a specific user
+      operationId: sightingsByUserId
+      parameters:
+        - in: query
+          name: birdId
+          description: Bird ID to list sightings for, if you only want to show sightings of one bird
+          schema:
+            type: string
+        - in: query
+          name: from
+          description: The date to list sightings from
+          schema:
+            type: string
+        - in: query
+          name: until
+          description: The date to list sightings until (inclusive)
+          schema:
+            type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sighting"
+    post:
+      summary: Add sighting
+      description: Add a new bird sighting for a user
+      operationId: addSighting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                birdId:
+                  description: The ID of the bird spotted
+                  type: string
+                timestamp:
+                  description: The date and time the bird was spotted
+                  type: string
+                lat:
+                  description: The latitude of the sighting
+                  type: number
+                long:
+                  description: The longitude of the sighting
+                  type: number
+                notes:
+                  description: User notes about the sighting
+                  type: string
+              required:
+                - birdId
+                - timestamp
+                - lat
+                - long
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sighting"
+  /users/{userId}/sightings/{sightingId}:
+    parameters:
+      - $ref: "#/components/parameters/userId"
+      - $ref: "#/components/parameters/sightingId"
+    get:
+      summary: Sighting by ID
+      description: Read a specific sighting by ID
+      operationId: sightingByUserIdAndId
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sighting"
+    put:
+      summary: Update sighting
+      description: Update a specific sighting by ID
+      operationId: updateSighting
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                birdId:
+                  type: string
+                  description: The ID of the bird spotted
+                timestamp:
+                  type: string
+                  description: The date and time the bird was spotted
+                lat:
+                  type: number
+                  description: The latitude of the sighting
+                long:
+                  type: number
+                  description: The longitude of the sighting
+                notes:
+                  type: string
+                  description: User notes about the sighting
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sighting"
+    delete:
+      summary: Delete sighting
+      description: Delete a specific sighting by ID
+      operationId: deleteSighting
+      responses:
+        200:
+          description: OK
+components:
+  parameters:
+    userId:
+      in: path
+      name: userId
+      description: User ID
+      example: user12345
+      required: true
+      schema:
+        type: string
+    birdId:
+      in: path
+      name: birdId
+      description: bird ID
+      example: bird12345
+      required: true
+      schema:
+        type: string
+    sightingId:
+      name: sightingId
+      in: path
+      description: Sighting ID
+      example: sighting12345
+      required: true
+      schema:
+        type: string
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: user1235
+        name:
+          type: string
+          example: Taylor Swift
+        favouriteBirds:
+          type: array
+          items:
+            $ref: "#/components/schemas/Bird"
+        email:
+          type: string
+          example: taylorswift@ilovebirds.com
+    Sighting:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The sighting ID
+        birdId:
+          type: string
+          description: The ID of the bird spotted
+        timestamp:
+          type: string
+          description: The date and time the bird was spotted
+        lat:
+          type: number
+          description: The latitude of the sighting
+        long:
+          type: number
+          description: The longitude of the sighting
+        notes:
+          type: string
+          description: User notes about the sighting
+    Bird:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+          example: Avocet
+        type:
+          type: string
+          description: What kind of bird it is
+          example: "wader"
+        habitats:
+          type: array
+          description: Where the bird can be found
+          example: ["lakes", "wetlands"]
+          items:
+            type: string
+        colour:
+          $ref: "#/components/schemas/Colour"
+        distinctiveFeatures:
+          type: string
+          description: Any distinctive features to look out for
+        wingspan:
+          type: number
+          description: Wingspan in centimetres
+        area:
+          type: string
+          description: Geographical area
+        image:
+          type: string
+          description: URL of image
+    Colour:
+      type: string
+      description: The primary colour of the bird
+      enum:
+        - "black"
+        - "grey"
+        - "blue"
+        - "red"
+        - "green"
+        - "brown"
+        - "orange"
+        - "pink"
+        - "white"
+        - "yellow"

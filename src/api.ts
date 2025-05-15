@@ -183,14 +183,14 @@ export interface components {
             /** @example Taylor Swift */
             name?: string;
             favouriteBirds?: components["schemas"]["Bird"][];
-            /** @example taylorswift@ilovebirds.com */
+            /** @example taylorswift@example.com */
             email?: string;
         };
         Sighting: {
             /** @description The sighting ID */
             id?: string;
             /** @description The ID of the bird spotted */
-            birdId?: string;
+            birdId?: number;
             /** @description The date and time the bird was spotted */
             timestamp?: string;
             /** @description The latitude of the sighting */
@@ -221,13 +221,11 @@ export interface components {
              *     ]
              */
             habitats?: string[];
-            colour?: components["schemas"]["Colour"];
+            colours?: components["schemas"]["Colour"][];
             /** @description Any distinctive features to look out for */
             distinctiveFeatures?: string;
             /** @description Wingspan in centimetres */
             wingspan?: number;
-            /** @description Geographical area */
-            area?: string;
             /** @description URL of image */
             image?: string;
         };
@@ -248,7 +246,7 @@ export interface components {
          * @description bird ID
          * @example bird12345
          */
-        birdId: string;
+        birdId: number;
         /**
          * @description Sighting ID
          * @example sighting12345
@@ -288,7 +286,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Bird"];
+                    "application/json": components["schemas"]["Bird"][];
                 };
             };
         };
@@ -402,7 +400,7 @@ export interface operations {
         parameters: {
             query?: {
                 /** @description Bird ID to list sightings for, if you only want to show sightings of one bird */
-                birdId?: string;
+                birdId?: number;
                 /** @description The date to list sightings from */
                 from?: string;
                 /** @description The date to list sightings until (inclusive) */
@@ -447,7 +445,7 @@ export interface operations {
             content: {
                 "application/json": {
                     /** @description The ID of the bird spotted */
-                    birdId: string;
+                    birdId: number;
                     /** @description The date and time the bird was spotted */
                     timestamp: string;
                     /** @description The latitude of the sighting */
@@ -522,7 +520,7 @@ export interface operations {
             content: {
                 "application/json": {
                     /** @description The ID of the bird spotted */
-                    birdId?: string;
+                    birdId?: number;
                     /** @description The date and time the bird was spotted */
                     timestamp?: string;
                     /** @description The latitude of the sighting */

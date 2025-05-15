@@ -1,0 +1,47 @@
+[
+  {
+    "id": "sighting1",
+    "userId": "user1",
+    "birdId": 1,
+    "timestamp": "2023-10-01T12:00:00Z",
+    "lat": 51.5074,
+    "long": -0.1278,
+    "notes": "It flew away when I tried to take a picture"
+  },
+  {
+    "id": "sighting2",
+    "userId": "user1",
+    "birdId": 4,
+    "timestamp": "2023-10-02T12:00:00Z",
+    "lat": 51.5074,
+    "long": -0.1278,
+    "notes": "What a nice bird."
+  },
+  {
+    "id": "sighting3",
+    "userId": "user1",
+    "birdId": 6,
+    "timestamp": "2023-10-04T12:00:00Z",
+    "lat": 51.5074,
+    "long": -0.1278,
+    "notes": "It was a bit rude"
+  },
+  {
+    "id": "sighting4",
+    "userId": "user2",
+    "birdId": 3,
+    "timestamp": "2024-01-01T12:00:00Z",
+    "lat": 51.5074,
+    "long": -0.1278,
+    "notes": "I've seen this one before"
+  },
+  {
+    "id": "sighting5",
+    "userId": "user2",
+    "birdId": 4,
+    "timestamp": "2024-01-04T12:00:00Z",
+    "lat": 51.5074,
+    "long": -0.1278,
+    "notes": "We talked about the weather"
+  }
+]

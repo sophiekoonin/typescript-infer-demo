@@ -1,0 +1,29 @@
+[
+  {
+    "id": "user1",
+    "name": "Alan Partridge",
+    "email": "alanpartridge@example.com",
+    "favouriteBirds": [
+      3
+    ]
+  },
+  {
+    "id": "user2",
+    "name": "Billie Sandpiper",
+    "email": "billiesandpiper@example.com",
+    "favouriteBirds": [
+      2,
+      5,
+      6
+    ]
+  },
+  {
+    "id": "user3",
+    "name": "Heron Mirren",
+    "email": "heronmirren@example.com",
+    "favouriteBirds": [
+      1,
+      4
+    ]
+  }
+]

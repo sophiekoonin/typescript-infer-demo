@@ -36,7 +36,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Bird"
+                type: array
+                items:
+                  $ref: "#/components/schemas/Bird"
   /birds/{birdId}:
     get:
       summary: Get a bird
@@ -116,7 +118,7 @@ paths:
           name: birdId
           description: Bird ID to list sightings for, if you only want to show sightings of one bird
           schema:
-            type: string
+            type: integer
         - in: query
           name: from
           description: The date to list sightings from
@@ -146,7 +148,7 @@ paths:
               properties:
                 birdId:
                   description: The ID of the bird spotted
-                  type: string
+                  type: integer
                 timestamp:
                   description: The date and time the bird was spotted
                   type: string
@@ -195,7 +197,7 @@ paths:
               type: object
               properties:
                 birdId:
-                  type: string
+                  type: integer
                   description: The ID of the bird spotted
                 timestamp:
                   type: string
@@ -239,7 +241,7 @@ components:
       example: bird12345
       required: true
       schema:
-        type: string
+        type: integer
     sightingId:
       name: sightingId
       in: path
@@ -264,7 +266,7 @@ components:
             $ref: "#/components/schemas/Bird"
         email:
           type: string
-          example: taylorswift@ilovebirds.com
+          example: taylorswift@example.com
     Sighting:
       type: object
       properties:
@@ -272,7 +274,7 @@ components:
           type: string
           description: The sighting ID
         birdId:
-          type: string
+          type: integer
           description: The ID of the bird spotted
         timestamp:
           type: string
@@ -306,17 +308,16 @@ components:
           example: ["lakes", "wetlands"]
           items:
             type: string
-        colour:
-          $ref: "#/components/schemas/Colour"
+        colours:
+          type: array
+          items:
+            $ref: "#/components/schemas/Colour"
         distinctiveFeatures:
           type: string
           description: Any distinctive features to look out for
         wingspan:
           type: number
           description: Wingspan in centimetres
-        area:
-          type: string
-          description: Geographical area
         image:
           type: string
           description: URL of image

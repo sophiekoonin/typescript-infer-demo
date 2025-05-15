@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "name": "European robin",
+    "type": "passerine",
+    "wingspan": 20,
+    "habitats": [
+      "forests",
+      "gardens"
+    ],
+    "distinctiveFeatures": "red breast",
+    "colours": [
+      "brown",
+      "red"
+    ],
+    "image": "https://unsplash.com/photos/shallow-focus-photo-of-brown-and-orange-bird-ptnG3jGVDQw"
+  },
+  {
+    "id": 2,
+    "name": "Teal",
+    "type": "duck",
+    "wingspan": 55,
+    "habitats": [
+      "wetlands",
+      "lakes"
+    ],
+    "distinctiveFeatures": "males have a striking blue-green head",
+    "colours": [
+      "blue",
+      "brown",
+      "grey"
+    ],
+    "image": "https://unsplash.com/photos/a-duck-floating-on-top-of-a-body-of-water-unNjrwwhuLg"
+  },
+  {
+    "id": 3,
+    "name": "Kestrel",
+    "type": "falcon",
+    "wingspan": 70,
+    "habitats": [
+      "fields",
+      "heaths",
+      "marshland"
+    ],
+    "distinctiveFeatures": "hovers above its prey",
+    "colours": [
+      "brown"
+    ],
+    "image": "https://unsplash.com/photos/a-bird-flying-through-a-blue-sky-with-its-wings-spread-d_QeTFH6r98"
+  },
+  {
+    "id": 4,
+    "name": "Pied wagtail",
+    "type": "passerine",
+    "wingspan": 28,
+    "habitats": [
+      "cities",
+      "grassland",
+      "gardens"
+    ],
+    "distinctiveFeatures": "a long tail that bobs around",
+    "colours": [
+      "white",
+      "grey",
+      "black"
+    ],
+    "image": "https://unsplash.com/photos/a-small-bird-perched-on-top-of-a-wooden-fence-3BP_Lt3Powc"
+  },
+  {
+    "id": 5,
+    "name": "Tawny owl",
+    "type": "owl",
+    "wingspan": 100,
+    "habitats": [
+      "woodlands"
+    ],
+    "distinctiveFeatures": "nocturnal",
+    "colours": [
+      "white",
+      "grey",
+      "brown"
+    ],
+    "image": "https://unsplash.com/photos/a-close-up-of-an-owl-with-a-blurry-background-SXdEPWGRvUE"
+  },
+  {
+    "id": 6,
+    "name": "Avocet",
+    "type": "wader",
+    "wingspan": 80,
+    "habitats": [
+      "lakes",
+      "wetlands"
+    ],
+    "distinctiveFeatures": "long legs for wading, and a long, upturned bill",
+    "colours": [
+      "white",
+      "black"
+    ],
+    "image": "https://unsplash.com/photos/a-black-and-white-bird-is-standing-on-the-sand--0FH2bk1L-M"
+  }
+]

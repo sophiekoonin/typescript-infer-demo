@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
+    "run:script": "tsx src/index.ts",
     "server": "node server/server.js",
     "watch:server": "nodemon  -i ./src -e mjs,json ./server/server.mjs",
     "codegen": "openapi-typescript spec.yml  -o src/api.ts"
@@ -12,6 +13,7 @@
   "devDependencies": {
     "nodemon": "3.1.10",
     "openapi-typescript": "7.7.1",
+    "tsx": "4.19.4",
     "typescript": "5.8.3"
   },
   "dependencies": {

@@ -10,7 +10,7 @@ function fetcher<P extends keyof paths, M extends Method<P>>(basePath: P, method
     });
   }
 
-  const fetchUrl = new URL(path, 'https://api.example.com');
+  const fetchUrl = new URL(path, 'http://localhost:3000');
   
   if (params?.query) {
     const queryParams = new URLSearchParams();
@@ -33,7 +33,8 @@ function fetcher<P extends keyof paths, M extends Method<P>>(basePath: P, method
   return fetch(fetchUrl, init).then((res) => res.json() as unknown as ResponseType<P, M>);
 }
 }
-const birdsFetcher = fetcher('/birds/{birdId}', 'get');
+const birdFetcher = fetcher('/birds/{birdId}', 'get');
+const listAllBirds = fetcher('/birds', 'get');
 
 type _Params<P extends keyof paths, M extends Method<P>> =
  P extends { 
@@ -60,7 +61,7 @@ type Params<P extends keyof paths, M extends Method<P>> =
   
 
 async function main() {
-  const data = await birdsFetcher({ path:  { birdId: 4 }});
+  const data = await listAllBirds()
   console.log(data);
 }
 main();

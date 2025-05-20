@@ -16,6 +16,11 @@
     "tsx": "4.19.4",
     "typescript": "5.8.3"
   },
+  "prettier": {
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true
+  },
   "dependencies": {
     "express": "5.1.0"
   }

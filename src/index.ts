@@ -1,5 +1,5 @@
-import { paths } from "./api"
-import { Method, Params, ResponseT } from "./types"
+import { paths } from './api'
+import { Method, Params, ResponseT } from './types'
 
 function fetcher<P extends keyof paths, M extends Method<P>>(
   basePath: P,
@@ -15,7 +15,7 @@ function fetcher<P extends keyof paths, M extends Method<P>>(
       })
     }
 
-    const fetchUrl = new URL(path, "http://localhost:3000")
+    const fetchUrl = new URL(path, 'http://localhost:3000')
 
     if (params?.query) {
       const queryParams = new URLSearchParams()
@@ -32,7 +32,7 @@ function fetcher<P extends keyof paths, M extends Method<P>>(
     if (params?.requestBody) {
       init.body = JSON.stringify(params.requestBody)
       init.headers = {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       }
     }
     return fetch(fetchUrl, init).then(
@@ -40,22 +40,13 @@ function fetcher<P extends keyof paths, M extends Method<P>>(
     )
   }
 }
-const birdFetcher = fetcher("/birds/{birdId}", "get")
-const addSighting = fetcher("/users/{userId}/sightings", "post")
-const listAllBirds = fetcher("/birds", "get")
+const birdFetcher = fetcher('/birds/{birdId}', 'get')
+const addSighting = fetcher('/users/{userId}/sightings', 'post')
+const listBirds = fetcher('/birds', 'get')
 
 async function main() {
-  const data = await addSighting({
-    path: {
-      userId: "123",
-    },
-    requestBody: {
-      birdId: 2,
-      lat: 1,
-      long: 2,
-      timestamp: new Date().toISOString(),
-    },
-  })
+  const data = await listBirds()
   console.log(data)
 }
+
 main()

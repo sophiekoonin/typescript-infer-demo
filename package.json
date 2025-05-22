@@ -8,7 +8,7 @@
     "run:script": "tsx src/index.ts",
     "server": "node server/server.js",
     "watch:server": "nodemon  -i ./src -e mjs,json ./server/server.mjs",
-    "codegen": "openapi-typescript spec.yml  -o src/api.ts"
+    "codegen": "openapi-typescript spec.yml  -o src/api-autogen.ts"
   },
   "devDependencies": {
     "nodemon": "3.1.10",

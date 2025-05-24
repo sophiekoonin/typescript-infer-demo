@@ -16,9 +16,7 @@ export interface schema {
   '/birds/{birdId}': {
     parameters: {
       query?: never
-      header?: never
       path?: never
-      cookie?: never
     }
     /**
      * Get a bird
@@ -36,9 +34,7 @@ export interface schema {
   '/birds/{birdId}/sightings': {
     parameters: {
       query?: never
-      header?: never
       path?: never
-      cookie?: never
     }
     /**
      * Sightings by bird ID
@@ -56,9 +52,7 @@ export interface schema {
   '/users': {
     parameters: {
       query?: never
-      header?: never
       path?: never
-      cookie?: never
     }
     get?: never
     put?: never
@@ -76,9 +70,7 @@ export interface schema {
   '/users/{userId}': {
     parameters: {
       query?: never
-      header?: never
       path?: never
-      cookie?: never
     }
     /**
      * Read user profile
@@ -96,15 +88,13 @@ export interface schema {
   '/users/{userId}/sightings': {
     parameters: {
       query?: never
-      header?: never
       path: {
         /**
          * @description User ID
          * @example user12345
          */
-        userId: components['parameters']['userId']
+        userId: number
       }
-      cookie?: never
     }
     /**
      * List sightings by user ID
@@ -126,20 +116,18 @@ export interface schema {
   '/users/{userId}/sightings/{sightingId}': {
     parameters: {
       query?: never
-      header?: never
       path: {
         /**
          * @description User ID
          * @example user12345
          */
-        userId: components['parameters']['userId']
+        userId: number
         /**
          * @description Sighting ID
          * @example sighting12345
          */
-        sightingId: components['parameters']['sightingId']
+        sightingId: number
       }
-      cookie?: never
     }
     /**
      * Sighting by ID
@@ -168,7 +156,7 @@ export interface components {
   schemas: {
     User: {
       /** @example user1235 */
-      id?: string
+      id?: number
       /** @example Taylor Swift */
       name?: string
       favouriteBirds?: components['schemas']['Bird'][]
@@ -177,7 +165,7 @@ export interface components {
     }
     Sighting: {
       /** @description The sighting ID */
-      id?: string
+      id?: number
       /** @description The ID of the bird spotted */
       birdId?: number
       /** @description The date and time the bird was spotted */
@@ -210,7 +198,7 @@ export interface components {
        *     ]
        */
       habitats?: string[]
-      colours?: components['schemas']['Colour'][]
+      colours?: string[]
       /** @description Any distinctive features to look out for */
       distinctiveFeatures?: string
       /** @description Wingspan in centimetres */
@@ -234,27 +222,12 @@ export interface components {
       | 'white'
       | 'yellow'
   }
-  responses: never
-  parameters: {
-    /**
-     * @description User ID
-     * @example user12345
-     */
-    userId: string
-    /**
-     * @description bird ID
-     * @example bird12345
-     */
+  response: never
+  pqarameters: {
+    userId: number
     birdId: number
-    /**
-     * @description Sighting ID
-     * @example sighting12345
-     */
-    sightingId: string
+    sightingId: number
   }
-  requestBodies: never
-  headers: never
-  pathItems: never
 }
 export type $defs = Record<string, never>
 export interface operations {
@@ -272,11 +245,9 @@ export interface operations {
          */
         habitat?: string
         /** @description Filter birds by colour */
-        colour?: components['schemas']['Colour']
+        colour?: string
       }
-      header?: never
       path?: never
-      cookie?: never
     }
     requestBody?: never
     response: {
@@ -286,15 +257,13 @@ export interface operations {
   birdById: {
     parameters: {
       query?: never
-      header?: never
       path: {
         /**
          * @description bird ID
          * @example bird12345
          */
-        birdId: components['parameters']['birdId']
+        birdId: number
       }
-      cookie?: never
     }
     requestBody?: never
     response: {
@@ -304,15 +273,13 @@ export interface operations {
   sightingsByBirdId: {
     parameters: {
       query?: never
-      header?: never
       path: {
         /**
          * @description bird ID
          * @example bird12345
          */
-        birdId: components['parameters']['birdId']
+        birdId: number
       }
-      cookie?: never
     }
     requestBody?: never
     response: {
@@ -322,9 +289,7 @@ export interface operations {
   addUser: {
     parameters: {
       query?: never
-      header?: never
       path?: never
-      cookie?: never
     }
     requestBody?: {
       content: {
@@ -343,15 +308,13 @@ export interface operations {
   userById: {
     parameters: {
       query?: never
-      header?: never
       path: {
         /**
          * @description User ID
          * @example user12345
          */
-        userId: components['parameters']['userId']
+        userId: number
       }
-      cookie?: never
     }
     requestBody?: never
     response: {
@@ -368,15 +331,13 @@ export interface operations {
         /** @description The date to list sightings until (inclusive) */
         until?: string
       }
-      header?: never
       path: {
         /**
          * @description User ID
          * @example user12345
          */
-        userId: components['parameters']['userId']
+        userId: number
       }
-      cookie?: never
     }
     requestBody?: never
     response: {
@@ -386,15 +347,13 @@ export interface operations {
   addSighting: {
     parameters: {
       query?: never
-      header?: never
       path: {
         /**
          * @description User ID
          * @example user12345
          */
-        userId: components['parameters']['userId']
+        userId: number
       }
-      cookie?: never
     }
     requestBody: {
       content: {
@@ -417,20 +376,18 @@ export interface operations {
   sightingByUserIdAndId: {
     parameters: {
       query?: never
-      header?: never
       path: {
         /**
          * @description User ID
          * @example user12345
          */
-        userId: components['parameters']['userId']
+        userId: number
         /**
          * @description Sighting ID
          * @example sighting12345
          */
-        sightingId: components['parameters']['sightingId']
+        sightingId: number
       }
-      cookie?: never
     }
     requestBody?: never
     response: {
@@ -440,20 +397,18 @@ export interface operations {
   updateSighting: {
     parameters: {
       query?: never
-      header?: never
       path: {
         /**
          * @description User ID
          * @example user12345
          */
-        userId: components['parameters']['userId']
+        userId: number
         /**
          * @description Sighting ID
          * @example sighting12345
          */
-        sightingId: components['parameters']['sightingId']
+        sightingId: number
       }
-      cookie?: never
     }
     requestBody?: {
       content: {
@@ -476,20 +431,18 @@ export interface operations {
   deleteSighting: {
     parameters: {
       query?: never
-      header?: never
       path: {
         /**
          * @description User ID
          * @example user12345
          */
-        userId: components['parameters']['userId']
+        userId: number
         /**
          * @description Sighting ID
          * @example sighting12345
          */
-        sightingId: components['parameters']['sightingId']
+        sightingId: number
       }
-      cookie?: never
     }
     requestBody?: never
     response: {

@@ -1,50 +1,50 @@
-import { paths } from './api'
-import { Method, Params, ResponseT } from './types'
+import { schema } from './api'
+import { Params, ResponseT } from './types'
 
-function fetcher<P extends keyof paths, M extends Method<P>>(
-  basePath: P,
+function createFetcher<P extends keyof schema, M extends keyof schema[P]>(
+  path: P,
   method: M
 ) {
   return async (params?: Params<P, M>) => {
-    const pathParams = basePath.match(/{([^}]+)}/g)
-    let path = basePath as string
+    const templateParams = path.match(/{([^}]+)}/g)
+    let realPath = path as string
     if (params?.path) {
-      pathParams?.forEach((param) => {
-        const paramName = param.replace(/{|}/g, params.path?.[param])
-        path = path.replace(param, `\${params.path.${paramName}}`)
+      templateParams?.forEach((templateParam) => {
+        const paramName = templateParam.replace(/{|}/g, '')
+        realPath = realPath.replace(templateParam, params?.path?.[paramName])
       })
     }
 
-    const fetchUrl = new URL(path, 'http://localhost:3000')
+    const baseUrl = 'http://api.example.com'
+    const fetchUrl = new URL(realPath, baseUrl)
 
     if (params?.query) {
-      const queryParams = new URLSearchParams()
       Object.entries(params.query).forEach(([key, value]) => {
         fetchUrl.searchParams.append(key, value as string)
       })
-      fetchUrl.search = queryParams.toString()
     }
 
-    const init: RequestInit = {
+    const options: RequestInit = {
       method: method as string,
     }
 
     if (params?.requestBody) {
-      init.body = JSON.stringify(params.requestBody)
-      init.headers = {
+      options.body = JSON.stringify(params.requestBody)
+      options.headers = {
         'Content-Type': 'application/json',
       }
     }
-    return fetch(fetchUrl, init).then(
+    return fetch(fetchUrl, options).then(
       (res) => res.json() as unknown as ResponseT<P, M>
     )
   }
 }
-const birdFetcher = fetcher('/birds/{birdId}', 'get')
-const addSighting = fetcher('/users/{userId}/sightings', 'post')
-const listBirds = fetcher('/birds', 'get')
+const birdFetcher = createFetcher('/birds/{birdId}', 'get')
+const addSighting = createFetcher('/users/{userId}/sightings', 'post')
+const listBirds = createFetcher('/birds', 'get')
 
 async function main() {
+  birdFetcher({ path: { birdId: 2 } })
   const data = await listBirds()
   console.log(data)
 }

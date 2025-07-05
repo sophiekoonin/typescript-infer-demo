@@ -15,7 +15,7 @@ function createFetcher<P extends keyof schema, M extends keyof schema[P]>(
       })
     }
 
-    const baseUrl = 'http://api.example.com'
+    const baseUrl = 'http://localhost:3000'
     const fetchUrl = new URL(realPath, baseUrl)
 
     if (params?.query) {
@@ -34,9 +34,7 @@ function createFetcher<P extends keyof schema, M extends keyof schema[P]>(
         'Content-Type': 'application/json',
       }
     }
-    return fetch(fetchUrl, options).then(
-      (res) => res.json() as unknown as ResponseT<P, M>
-    )
+    return fetch(fetchUrl, options).then((res) => res.json() as ResponseT<P, M>)
   }
 }
 const birdFetcher = createFetcher('/birds/{birdId}', 'get')
@@ -44,7 +42,7 @@ const addSighting = createFetcher('/users/{userId}/sightings', 'post')
 const listBirds = createFetcher('/birds', 'get')
 
 async function main() {
-  birdFetcher({ path: { birdId: 2 } })
+  birdFetcher({ path: { birdId: 1 } })
   const data = await listBirds()
   console.log(data)
 }

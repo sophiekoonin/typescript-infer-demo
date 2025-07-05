@@ -5,89 +5,42 @@ export interface schema {
      * @description Get a list of all birds, optionally filtered by type
      */
     get: operations['listBirds']
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
   }
   '/birds/{birdId}': {
-    parameters: {
-      query?: never
-      path?: never
-    }
+    parameters: Record<string, never>
     /**
      * Get a bird
      * @description Read an individual bird by ID
      */
     get: operations['birdById']
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
   }
   '/birds/{birdId}/sightings': {
-    parameters: {
-      query?: never
-      path?: never
-    }
+    parameters: Record<string, never>
     /**
      * Sightings by bird ID
      * @description List all sightings for a bird
      */
     get: operations['sightingsByBirdId']
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
   }
   '/users': {
-    parameters: {
-      query?: never
-      path?: never
-    }
-    get?: never
-    put?: never
+    parameters: Record<string, never>
+
     /**
      * Create user
      * @description Create a new user profile
      */
     post: operations['addUser']
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
   }
   '/users/{userId}': {
-    parameters: {
-      query?: never
-      path?: never
-    }
+    parameters: Record<string, never>
     /**
      * Read user profile
      * @description Fetch a user's profile
      */
     get: operations['userById']
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
   }
   '/users/{userId}/sightings': {
     parameters: {
-      query?: never
       path: {
         /**
          * @description User ID
@@ -101,21 +54,14 @@ export interface schema {
      * @description List all bird sightings for a specific user
      */
     get: operations['sightingsByUserId']
-    put?: never
     /**
      * Add sighting
      * @description Add a new bird sighting for a user
      */
     post: operations['addSighting']
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
   }
   '/users/{userId}/sightings/{sightingId}': {
     parameters: {
-      query?: never
       path: {
         /**
          * @description User ID
@@ -139,16 +85,11 @@ export interface schema {
      * @description Update a specific sighting by ID
      */
     put: operations['updateSighting']
-    post?: never
     /**
      * Delete sighting
      * @description Delete a specific sighting by ID
      */
     delete: operations['deleteSighting']
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
   }
 }
 export type webhooks = Record<string, never>
@@ -247,16 +188,13 @@ export interface operations {
         /** @description Filter birds by colour */
         colour?: string
       }
-      path?: never
     }
-    requestBody?: never
     response: {
       content: components['schemas']['Bird'][]
     }
   }
   birdById: {
     parameters: {
-      query?: never
       path: {
         /**
          * @description bird ID
@@ -265,14 +203,12 @@ export interface operations {
         birdId: number
       }
     }
-    requestBody?: never
     response: {
       content: components['schemas']['Bird']
     }
   }
   sightingsByBirdId: {
     parameters: {
-      query?: never
       path: {
         /**
          * @description bird ID
@@ -281,16 +217,12 @@ export interface operations {
         birdId: number
       }
     }
-    requestBody?: never
     response: {
       content: components['schemas']['Sighting']
     }
   }
   addUser: {
-    parameters: {
-      query?: never
-      path?: never
-    }
+    parameters: Record<string, never>
     requestBody?: {
       content: {
         /** @description User's name */
@@ -307,7 +239,6 @@ export interface operations {
   }
   userById: {
     parameters: {
-      query?: never
       path: {
         /**
          * @description User ID
@@ -316,7 +247,6 @@ export interface operations {
         userId: number
       }
     }
-    requestBody?: never
     response: {
       content: components['schemas']['Sighting']
     }
@@ -339,14 +269,12 @@ export interface operations {
         userId: number
       }
     }
-    requestBody?: never
     response: {
       content: components['schemas']['Sighting']
     }
   }
   addSighting: {
     parameters: {
-      query?: never
       path: {
         /**
          * @description User ID
@@ -375,7 +303,6 @@ export interface operations {
   }
   sightingByUserIdAndId: {
     parameters: {
-      query?: never
       path: {
         /**
          * @description User ID
@@ -389,14 +316,12 @@ export interface operations {
         sightingId: number
       }
     }
-    requestBody?: never
     response: {
       content: components['schemas']['Sighting']
     }
   }
   updateSighting: {
     parameters: {
-      query?: never
       path: {
         /**
          * @description User ID
@@ -430,7 +355,6 @@ export interface operations {
   }
   deleteSighting: {
     parameters: {
-      query?: never
       path: {
         /**
          * @description User ID
@@ -444,7 +368,6 @@ export interface operations {
         sightingId: number
       }
     }
-    requestBody?: never
     response: {
       /** @description OK */
       content?: never

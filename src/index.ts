@@ -45,16 +45,17 @@ async function main() {
   getBird({ path: { birdId: 1 } })
   const birds = await listBirds()
 
-  await addSighting({
+  const rsp = await addSighting({
     path: { userId: 1 },
     requestBody: {
       birdId: 2,
       timestamp: '2025-06-04',
       lat: 0,
-      long: 0,
+      long: 0.2228486,
       notes: "it's so cute!",
     },
   })
+  console.log(rsp)
 }
 
 main()

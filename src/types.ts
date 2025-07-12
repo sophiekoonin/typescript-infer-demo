@@ -13,7 +13,7 @@ type _Params<
   ? {
       query: Q
       path: PP
-      requestBody: RB extends unknown ? undefined : RB
+      requestBody: unknown extends RB ? undefined : RB
     }
   : never
 
@@ -34,3 +34,7 @@ export type Params<
   (_Params<P, M>['requestBody'] extends undefined
     ? { requestBody?: never }
     : { requestBody: _Params<P, M>['requestBody'] })
+
+type AddSightingParams = _Params<'/users/{userId}/sightings', 'post'>
+
+type GetBirdParams = _Params<'/birds/{birdId}', 'get'>

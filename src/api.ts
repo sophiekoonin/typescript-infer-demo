@@ -7,7 +7,6 @@ export interface schema {
     get: operations['listBirds']
   }
   '/birds/{birdId}': {
-    parameters: Record<string, never>
     /**
      * Get a bird
      * @description Read an individual bird by ID
@@ -15,7 +14,6 @@ export interface schema {
     get: operations['birdById']
   }
   '/birds/{birdId}/sightings': {
-    parameters: Record<string, never>
     /**
      * Sightings by bird ID
      * @description List all sightings for a bird
@@ -23,8 +21,6 @@ export interface schema {
     get: operations['sightingsByBirdId']
   }
   '/users': {
-    parameters: Record<string, never>
-
     /**
      * Create user
      * @description Create a new user profile
@@ -32,7 +28,6 @@ export interface schema {
     post: operations['addUser']
   }
   '/users/{userId}': {
-    parameters: Record<string, never>
     /**
      * Read user profile
      * @description Fetch a user's profile
@@ -164,7 +159,7 @@ export interface components {
       | 'yellow'
   }
   response: never
-  pqarameters: {
+  parameters: {
     userId: number
     birdId: number
     sightingId: number
@@ -222,7 +217,6 @@ export interface operations {
     }
   }
   addUser: {
-    parameters: Record<string, never>
     requestBody?: {
       content: {
         /** @description User's name */

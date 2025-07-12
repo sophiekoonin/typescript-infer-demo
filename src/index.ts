@@ -37,14 +37,24 @@ function createFetcher<P extends keyof schema, M extends keyof schema[P]>(
     return fetch(fetchUrl, options).then((res) => res.json() as ResponseT<P, M>)
   }
 }
-const birdFetcher = createFetcher('/birds/{birdId}', 'get')
+const getBird = createFetcher('/birds/{birdId}', 'get')
 const addSighting = createFetcher('/users/{userId}/sightings', 'post')
 const listBirds = createFetcher('/birds', 'get')
 
 async function main() {
-  birdFetcher({ path: { birdId: 1 } })
-  const data = await listBirds()
-  console.log(data)
+  getBird({ path: { birdId: 1 } })
+  const birds = await listBirds()
+
+  await addSighting({
+    path: { userId: 1 },
+    requestBody: {
+      birdId: 2,
+      timestamp: '2025-06-04',
+      lat: 0,
+      long: 0,
+      notes: "it's so cute!",
+    },
+  })
 }
 
 main()
